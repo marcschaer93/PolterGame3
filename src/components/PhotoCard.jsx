@@ -1,12 +1,17 @@
-// src/components/PhotoCard.js
 import React from "react";
 
 function PhotoCard({ content, customText }) {
   return (
-    <div className="card photo-card">
-      {customText && <p>{customText}</p>}{" "}
-      {/* Hier kannst du den benutzerdefinierten Text einfügen */}
-      <img src={content} alt="Foto" className="card-img" />
+    <div className="card photo-card" style={{ width: "100%", height: "100%" }}>
+      <img
+        src={content}
+        alt={customText || "Foto"}
+        style={{
+          objectFit: "cover", // Bild füllt den Container aus
+          width: "100%", // Volle Breite
+          height: "100%", // Volle Höhe
+        }}
+      />
     </div>
   );
 }

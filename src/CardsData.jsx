@@ -17,11 +17,6 @@ export const initialCards = [
     customText: "Schau dir dieses Foto an!", // Benutzerdefinierter Text
   },
   {
-    type: "photo",
-    content: "https://example.com/photo.jpg", // Foto-Link
-    customText: "Was für ein schöner Moment!", // Benutzerdefinierter Text
-  },
-  {
     type: "youtube",
     content: "https://www.youtube.com/watch?v=2IG2MLGkibM", // YouTube-Link
     customText: "Lachen garantiert!", // Benutzerdefinierter Text
