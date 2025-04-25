@@ -1,38 +1,24 @@
 import React, { useState } from "react";
 import "./App.css";
+import { initialCards } from "./CardsData"; // Importiere die initialCards
+
+import TaskCard from "./components/TaskCard"; // Importiere TaskCard
+import PhotoCard from "./components/PhotoCard"; // Importiere PhotoCard
+import VideoCard from "./components/VideoCard"; // Importiere VideoCard
 
 function App() {
-  // Karten-Daten
-  const initialCards = [
-    {
-      type: "task",
-      content: "Mache einen Handstand für 10 Sekunden!",
-    },
-    {
-      type: "task",
-      content: "Erzähle einen peinlichen Witz!",
-    },
-    {
-      type: "photo",
-      content: "https://example.com/photo.jpg", // Hier einen echten Link zu einem Bild einfügen
-    },
-    {
-      type: "photo",
-      content: "https://i.imgur.com/Z7meRh0.jpg", // Hier einen echten Link zu einem Bild einfügen
-    },
-    {
-      type: "youtube",
-      content: "https://www.youtube.com/watch?v=2IG2MLGkibM", // Beispiel YouTube-Link
-    },
-  ];
-
   // Zustand für die angezeigte Karte und den verbleibenden Karten
   const [cards, setCards] = useState(initialCards);
   const [currentCard, setCurrentCard] = useState(null);
   const [gameOver, setGameOver] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false); // Zustand, ob das Spiel gestartet wurde
 
   // Funktion, um eine zufällige Karte zu ziehen
   const drawRandomCard = () => {
+    if (!gameStarted) {
+      setGameStarted(true); // Setze den Zustand auf 'true', wenn das Spiel startet
+    }
+
     if (cards.length === 0) {
       setGameOver(true); // Wenn keine Karten mehr übrig sind, beende das Spiel
       return;
@@ -49,8 +35,8 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Polterabend - Zieh eine Karte!</h1>
-
+      {!gameStarted && <h1>Polterabend - Zieh eine Karte!</h1>}{" "}
+      {/* Zeige den Titel nur, wenn das Spiel noch nicht gestartet wurde */}
       <div className="card-display">
         {gameOver ? (
           <h2>Spiel beendet! 🎉</h2>
@@ -58,41 +44,29 @@ function App() {
           currentCard && (
             <>
               {currentCard.type === "task" && (
-                <div className="card task-card">
-                  <h2>Aufgabe:</h2>
-                  <p>{currentCard.content}</p>
-                </div>
+                <TaskCard
+                  content={currentCard.content}
+                  customText={currentCard.customText}
+                />
               )}
 
               {currentCard.type === "photo" && (
-                <div className="card photo-card">
-                  <h2>Foto:</h2>
-                  <img
-                    src={currentCard.content}
-                    alt="Foto"
-                    className="card-img"
-                  />
-                </div>
+                <PhotoCard
+                  content={currentCard.content}
+                  customText={currentCard.customText}
+                />
               )}
 
               {currentCard.type === "youtube" && (
-                <div className="card video-card">
-                  <h2>Video:</h2>
-                  <a
-                    href={currentCard.content}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="youtube-link"
-                  >
-                    Schau dir das YouTube-Video an!
-                  </a>
-                </div>
+                <VideoCard
+                  content={currentCard.content}
+                  customText={currentCard.customText}
+                />
               )}
             </>
           )
         )}
       </div>
-
       {!gameOver && <button onClick={drawRandomCard}>Karte ziehen</button>}
     </div>
   );

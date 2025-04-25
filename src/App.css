@@ -156,7 +156,7 @@ button:focus {
 .card-img {
   width: 100%; /* Bild nimmt die ganze Breite der Karte ein */
   height: auto; /* Höhenverhältnis beibehalten */
-  max-height: 200px; /* Maximalhöhe auf 200px setzen (oder eine andere Zahl, die dir passt) */
+  max-height: 600px; /* Maximalhöhe auf 200px setzen (oder eine andere Zahl, die dir passt) */
   object-fit: contain; /* Bild wird in den Container eingefügt, ohne verzerrt zu werden */
   border-radius: 15px; /* Abgerundete Ecken */
 }
