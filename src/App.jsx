@@ -17,8 +17,12 @@ function App() {
       content: "https://example.com/photo.jpg", // Hier einen echten Link zu einem Bild einfügen
     },
     {
+      type: "photo",
+      content: "https://i.imgur.com/Z7meRh0.jpg", // Hier einen echten Link zu einem Bild einfügen
+    },
+    {
       type: "youtube",
-      content: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Beispiel YouTube-Link
+      content: "https://www.youtube.com/watch?v=2IG2MLGkibM", // Beispiel YouTube-Link
     },
   ];
 
@@ -74,15 +78,14 @@ function App() {
               {currentCard.type === "youtube" && (
                 <div className="card video-card">
                   <h2>Video:</h2>
-                  <iframe
-                    width="560"
-                    height="315"
-                    src={currentCard.content}
-                    frameBorder="0"
-                    allowFullScreen
-                    title="YouTube Video"
-                    className="video-frame"
-                  ></iframe>
+                  <a
+                    href={currentCard.content}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="youtube-link"
+                  >
+                    Schau dir das YouTube-Video an!
+                  </a>
                 </div>
               )}
             </>
